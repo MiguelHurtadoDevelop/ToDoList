@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    
+    <link rel="stylesheet" href="css.css">
+    
+</head>
+<body>
+    <div id="app">
+        <div>
+            <p>
+                <input type="text" v-model="toDo" id="input">
+                <button v-on:click="añadirAray()">Añadir</button>
+                <button v-on:click="eliminarCompletadas()">Eliminar todas</button>
+
+                <input type="checkbox" v-model="Buscar" id="input">Buscar</input>
+                <input v-if="Buscar" type="text" v-model="Search" id="input" v-on:keyup="filtrarArray()">
+
+            </p>
+            <p>{{contTareas}}</p>
+            <ul>
+                <li v-for="(item, index) in filteredToDoList" >
+                    Tarea: {{ item.Tarea }} Fecha: {{ item.Fecha }} Prioridad: {{ item.Prioridad}} 
+                    <button v-on:click="cambiarPrioridad(index, 0)">0</button>
+                    <button v-on:click="cambiarPrioridad(index, 1)">1</button>
+                    <button v-on:click="cambiarPrioridad(index, 2)">2</button>
+                    <button v-on:click="eliminarTarea(index)">Eliminar</button>
+                    <button v-on:click="completarTarea(index)">{{ item.Completada ? 'Desmarcar' : 'Completar' }}</button>
+                </li>
+            </ul>
+            
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
